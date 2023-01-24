@@ -1,0 +1,4 @@
+pandas==1.5.3
+pytextrank==3.2.4
+sentence_transformers==2.2.2
+spacy==3.5.0
