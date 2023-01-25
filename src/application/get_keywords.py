@@ -4,9 +4,6 @@ import pytextrank
 
 
 data = pd.read_csv("../../data/CL_papers.csv")
-abstracts = data["abstract"].tolist()
-abstracts = [abstract for abstract in abstracts if abstract != ""]
-
 
 keywords_titles = pd.DataFrame(columns = ["title", "keywords", "ranks", "counts"])
 titles = data["title"].tolist()
