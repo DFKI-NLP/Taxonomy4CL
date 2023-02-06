@@ -9,11 +9,9 @@ labels = ["title", "abstract"]
 for label in labels:
     df = pd.read_csv(f"../../../data/papers/keywords_{label}s.csv")
     docs = df[label].tolist()
-
-    topic_model = BERTopic(verbose=True, nr_topics="auto")
-    topics, probs = topic_model.fit_transform(docs)
-
     for nr in nr_topics:
+        topic_model = BERTopic(verbose=True)
+        topics, probs = topic_model.fit_transform(docs)
         topic_model.reduce_topics(docs, nr_topics=nr)
         topic_model.get_topic_info().to_csv(
             f"../../../data/results/csv/{label}s_{nr}_topics.csv", index=False
@@ -28,10 +26,17 @@ for label in labels:
         intertopic_map.write_html(
             f"../../../data/results/html/{label}s_intertopic_map_{nr}_topics.html"
         )
+        intertopic_map.write_image(
+            f"../../../data/results/pdf/{label}s_intertopic_map_{nr}_topics.html"
+        )
 
         hierarchy_fig = topic_model.visualize_hierarchy(
             hierarchical_topics=hierarchical_topics
         )
         hierarchy_fig.write_html(
             f"../../../data/results/html/hierarchy_{label}s_{nr}_topics.html"
+        )
+
+        hierarchy_fig.write_image(
+            f"../../../data/results/pdf/hierarchy_{label}s_{nr}_topics.html"
         )
