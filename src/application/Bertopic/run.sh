@@ -6,4 +6,4 @@ srun -K \
 --mail-type=ALL \
 --mail-user=ekaterina.borisova@dfki.de \
 install.sh \
-python run_bertopic.py
+python run_bertopic.py > errors.txt
