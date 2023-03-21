@@ -9,17 +9,17 @@
 .node circle {
   fill: #fff;
   stroke: steelblue;
-  stroke-width: 1.5px;
+  stroke-width: 2.0px;
 }
 
 .node text {
-  font: 10px sans-serif;
+  font: 12px sans-serif;
 }
 
 .link {
   fill: none;
   stroke: #ccc;
-  stroke-width: 1.5px;
+  stroke-width: 2.0px;
 }
 
 </style>
@@ -50,7 +50,6 @@ var svg = d3.select("body").append("svg")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.json("taxonomy.json", function(error, taxonomy) {
-//d3.json(jsonstring, function(error, taxonomy) {
   if (error) throw error;
 
   root = taxonomy;
