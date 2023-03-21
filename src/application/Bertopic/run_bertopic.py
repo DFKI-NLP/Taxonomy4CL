@@ -1,4 +1,4 @@
-"""Run bertopic on titles/abstracts from arXiv papers tages as cs.CL"""
+"""Run bertopic on titles/abstracts from arXiv papers taged as cs.CL"""
 from bertopic import BERTopic
 import pandas as pd
 from scipy.cluster import hierarchy as sch
