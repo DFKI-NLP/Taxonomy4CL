@@ -1,4 +1,4 @@
-"""Run bertopic on acl titles/abstracts"""
+"""Run bertopic on titles/abstracts from arXiv papers tages as cs.CL"""
 from bertopic import BERTopic
 import pandas as pd
 from scipy.cluster import hierarchy as sch
@@ -7,7 +7,7 @@ from umap import UMAP
 labels = ["title", "abstract"]
 
 for label in labels:
-    df = pd.read_csv(f"../../../data/papers/keywords_{label}s.csv")
+    df = pd.read_csv(f"../../../data/papers/{label}s.csv")
     docs = df[label].tolist()
     umap_model = UMAP(random_state=42)
     topic_model = BERTopic(umap_model=umap_model)
