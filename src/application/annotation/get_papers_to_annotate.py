@@ -24,6 +24,7 @@ def main():
     df_filtered = df[
         (df["abstract"] != "") & (df["title"] != "") & (df["acl_id"] != "")
     ]
+    df_filtered= df_filtered[df_filtered["year"].astype(int)>=2016]
     df_filtered["is_english"] = [is_english(text) for text in df_filtered["title"]]
     english_papers = df_filtered[df_filtered["is_english"] == True]
 
