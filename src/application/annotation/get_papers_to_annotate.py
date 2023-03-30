@@ -25,8 +25,13 @@ def main():
         (df["abstract"] != "") & (df["title"] != "") & (df["acl_id"] != "")
     ]
     df_filtered= df_filtered[df_filtered["year"].astype(int)>=2016]
-    df_filtered["is_english"] = [is_english(text) for text in df_filtered["title"]]
-    english_papers = df_filtered[df_filtered["is_english"] == True]
+    df_filtered["is_english_title"] = [is_english(text) for text in df_filtered["title"]]
+    df_filtered["is_english_abstract"] = [is_english(text) for text in df_filtered["abstract"]]
+
+    english_papers = df_filtered[
+        (df_filtered["is_english_title"] == True) & (df_filtered["is_english_abstract"] == True)
+        ]
+    
 
     english_papers = english_papers.reset_index(drop=True)
     sample_set = english_papers.sample(n=50)
