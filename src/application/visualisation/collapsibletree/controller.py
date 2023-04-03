@@ -5,12 +5,12 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def home1():
+def index():
     return render_template("index.html")
 
 
 @app.route("/taxonomy.json")
-def downloadFile():
+def loadFile():
     path = "taxonomy.json"
     return send_file(path, as_attachment=True)
 
