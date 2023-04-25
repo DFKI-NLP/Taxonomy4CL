@@ -66,8 +66,8 @@ def main():
     )
     df_filtered["abstract_lang"] = lang_abstracts
 
-    lang_abstracts = detect_en_lang(df_filtered["title"].tolist(), nlp, batch_size=50)
-    df_filtered["title_lang"] = lang_abstracts
+    lang_titles = detect_en_lang(df_filtered["title"].tolist(), nlp, batch_size=50)
+    df_filtered["title_lang"] = lang_titles
 
     english_papers = df_filtered[
         (df_filtered["title_lang"] == True) & (df_filtered["abstract_lang"] == True)
