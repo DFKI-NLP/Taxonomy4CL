@@ -4,6 +4,8 @@ import spacy
 import spacy_fastlang
 
 
+nlp = spacy.load("en_core_web_lg")
+
 def is_english(text: str) -> bool:
     """
     Checks if a text is in English using SpaCy language detection.
@@ -12,7 +14,6 @@ def is_english(text: str) -> bool:
     Return:
         bool:True if the input text is in English, False otherwise
     """
-    nlp = spacy.load("en_core_web_lg")
     nlp.add_pipe("language_detector")
     doc = nlp(text)
     return doc._.language == "en"
