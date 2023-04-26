@@ -36,6 +36,19 @@ def detect_en_lang(dataset: List[str], nlp, batch_size: int = 10) -> bool:
     return languages
 
 
+def check_aclid_format(acl_id: str) -> bool:
+    """
+    Gets whether acl id is in old (CYY-VPPP or CYY-VVPP) or new format ({year}.{venue}-{volume}.{#})
+    Params:
+        acl_id (str): String with acl_id
+    Return:
+        bool: True is the fist 2 char are letters, thus old acl format
+    """
+    if acl_id[:1].isalpha():
+        return True
+    return False
+
+
 def get_venue(acl_id: str) -> str:
     """
     Gets the venue from new acl_id format of type {year}.{venue}-{volume}.{#}
@@ -75,17 +88,29 @@ def main():
 
     english_papers = english_papers.reset_index(drop=True)
 
-    # determine the proportion of venues
+    # get venues and build a dataset with randomply selected docs with (almost) equal nub of papers per paper
     english_papers["venue"] = english_papers.apply(
         lambda row: get_venue(row["acl_id"])
-        if int(row["year"]) >= 2020
+        if check_aclid_format(row["acl_id"]) == False
         else row["acl_id"][:3],
         axis=1,
     )
 
-    sample_set = english_papers.sample(n=1500)
+    # we want to have 1500 docs in the dataset
+    # define the min docs per venue
 
-    for index, row in sample_set.iterrows():
+    min_numb = 1500 / len(english_papers["venue"].unique())
+    dataset = english_papers.groupby("venue").apply(
+        lambda x: x.sample(min(round(min_numb), len(x))).reset_index(drop=True)
+    )
+
+    # remove any brackets from the text
+
+    dataset = dataset["title"].apply(lambda x: re.sub(r"[\([{})\]]", "", x))
+    dataset = dataset["abstract"].apply(lambda x: re.sub(r"[\([{})\]]", "", x))
+
+    # add special token to the text and save it with the acl id as a filename
+    for index, row in dataset.iterrows():
         with open(f'papers_to_annotate/{row["acl_id"]}.txt', "w") as f:
             f.write("TITLE " + f'{row["title"]}' + " TITLE" + "\n")
             f.write("ABSTRACT " + f'{row["abstract"]}' + " ABSTRACT")
