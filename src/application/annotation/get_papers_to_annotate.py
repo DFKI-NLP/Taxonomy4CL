@@ -31,8 +31,8 @@ def detect_en_lang(dataset: List[str], nlp, batch_size: int = 10) -> bool:
         docs = list(nlp.pipe(batch))
 
         for doc in docs:
-            languages.append(doc._.language == "en")
-
+            if doc._.language == "en" and doc._.language_score >= 0.9:
+                languages.append(doc)
     return languages
 
 
@@ -88,7 +88,7 @@ def main():
 
     english_papers = english_papers.reset_index(drop=True)
 
-    # get venues and build a dataset with randomply selected docs with (almost) equal nub of papers per paper
+    # get venues and build a dataset with randomply selected docs with (almost) equal numb of papers per paper
     english_papers["venue"] = english_papers.apply(
         lambda row: get_venue(row["acl_id"])
         if check_aclid_format(row["acl_id"]) == False
