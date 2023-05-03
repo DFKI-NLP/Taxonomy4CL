@@ -31,8 +31,7 @@ def detect_en_lang(dataset: List[str], nlp, batch_size: int = 10) -> bool:
         docs = list(nlp.pipe(batch))
 
         for doc in docs:
-            if doc._.language == "en" and doc._.language_score >= 0.9:
-                languages.append(doc)
+            languages.append(doc._.language == "en" and doc._.language_score >= 0.8)
     return languages
 
 
@@ -88,7 +87,7 @@ def main():
 
     english_papers = english_papers.reset_index(drop=True)
 
-    # get venues and build a dataset with randomply selected docs with (almost) equal numb of papers per paper
+    # get venues 
     english_papers["venue"] = english_papers.apply(
         lambda row: get_venue(row["acl_id"])
         if check_aclid_format(row["acl_id"]) == False
@@ -97,17 +96,33 @@ def main():
     )
 
     # we want to have 1500 docs in the dataset
-    # define the min docs per venue
-
-    min_numb = 1500 / len(english_papers["venue"].unique())
+    # define the min docs per venue and extract docs per venue
+    dataset_size = 1500
+    min_numb_docs = round(dataset_size / len(english_papers["venue"].unique()))
     dataset = english_papers.groupby("venue").apply(
-        lambda x: x.sample(min(round(min_numb), len(x))).reset_index(drop=True)
+        lambda x: x.sample(min(min_numb_docs, len(x)), random_state=42).reset_index(
+            drop=True
+        )
     )
 
-    # remove any brackets from the text
+    # collect additonal docs in case the max is not reached
+    if len(dataset) < dataset_size:
+        collected_acls = dataset["acl_id"].tolist()
+        remaining_docs = english_papers[~english_papers["acl_id"].isin(collected_acls)]
+        remaining_docs_numb = dataset_size - len(dataset)
 
-    dataset = dataset["title"].apply(lambda x: re.sub(r"[\([{})\]]", "", x))
-    dataset = dataset["abstract"].apply(lambda x: re.sub(r"[\([{})\]]", "", x))
+        additional_sample = remaining_docs.sample(remaining_docs_numb, random_state=42)
+        dataset = pd.concat([dataset, additional_sample], ignore_index=True)
+
+        assert not dataset.duplicated().any()
+
+    # remove any brackets from the text
+    dataset["title"] = dataset["title"].apply(lambda x: re.sub(r"[\([{})\]]", "", x))
+    dataset["abstract"] = dataset["abstract"].apply(
+        lambda x: re.sub(r"[\([{})\]]", "", x)
+    )
+
+    dataset.to_csv("papers_to_annotate/annotation_corpus.csv", index=False)
 
     # add special token to the text and save it with the acl id as a filename
     for index, row in dataset.iterrows():
