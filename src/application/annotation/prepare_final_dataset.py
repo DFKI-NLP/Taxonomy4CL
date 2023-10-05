@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 
-# Note that firt all curation files should be unzipped
+# Note that first all curation files should be unzipped
 # Command for mac: find . -name "*.zip" | while read filename; do unzip -o -d "`dirname "$filename"`" "$filename"; done;
 
 
