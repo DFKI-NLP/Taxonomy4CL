@@ -87,3 +87,26 @@ df = pd.DataFrame(data)
 df = df.applymap(lambda x: np.nan if isinstance(x, list) and len(x) == 0 else x)
 
 df.to_csv("annotated_data.csv", index=False)
+
+
+# prepare a sample of curated docs with metadat
+path_to_acl_data = ""
+
+raw_acl_corpus = pd.read_csv(
+    path_to_acl_data,
+    usecols=[
+        "acl_id",
+        "abstract",
+        "url",
+        "publisher",
+        "year",
+        "month",
+        "booktitle",
+        "author",
+        "title",
+        "doi",
+        "venue",
+    ],
+)
+sample_data = pd.merge(df, raw_acl_corpus, on="acl_id", how="left")
+sample_data[:200].to_csv("sample_data.csv", index=False)
