@@ -25,83 +25,87 @@ def get_xmi_file_paths(main_path: str):
         if file.endswith(".xmi")
     ]
 
+def main():
+    
+    MAIN_PATH = ""
 
-MAIN_PATH = ""
+    xmi_files = get_xmi_file_paths(MAIN_PATH)
+    xmi_files
 
-xmi_files = get_xmi_file_paths(MAIN_PATH)
-xmi_files
-
-# get labels per level per doc
-# create dict of type [{'acl id': [{'Level1': 'label'},
-#                                  {'Level2': label},]},
-#                      {'acl_id': [{'Level1': 'label'},
-#                                  {'Level3': 'label'}]}]
+    # get labels per level per doc
+    # create dict of type [{'acl id': [{'Level1': 'label'},
+    #                                  {'Level2': label},]},
+    #                      {'acl_id': [{'Level1': 'label'},
+    #                                  {'Level3': 'label'}]}]
 
 
-curation = []
+    curation = []
 
-for file in xmi_files:
-    acl_id = re.search(r"\/([^/]+)\.txt", file).group(1)
+    for file in xmi_files:
+        acl_id = re.search(r"\/([^/]+)\.txt", file).group(1)
 
-    lables = []
-    tree = ET.parse(file)
-    root = tree.getroot()
+        lables = []
+        tree = ET.parse(file)
+        root = tree.getroot()
 
-    for child in root:
-        if "FoRhierarchy" in child.tag:
-            for key, value in child.attrib.items():
-                if "Level" in key:
-                    lables.append({key: value})
+        for child in root:
+            if "FoRhierarchy" in child.tag:
+                for key, value in child.attrib.items():
+                    if "Level" in key:
+                        lables.append({key: value})
 
-    curation.append({acl_id: list(lables)})
+        curation.append({acl_id: list(lables)})
 
-data = []
+    data = []
 
-for item in curation:
-    for id, value in item.items():
-        level1 = []
-        level2 = []
-        level3 = []
-        for element in value:
-            for key, value in element.items():
-                if key == "Level1":
-                    level1.append(value)
-                elif key == "Level2":
-                    level2.append(value)
-                else:
-                    level3.append(value)
+    for item in curation:
+        for id, value in item.items():
+            level1 = []
+            level2 = []
+            level3 = []
+            for element in value:
+                for key, value in element.items():
+                    if key == "Level1":
+                        level1.append(value)
+                    elif key == "Level2":
+                        level2.append(value)
+                    else:
+                        level3.append(value)
 
-        data.append(
-            {
-                "acl_id": id,
-                "Level1": list(set(level1)),
-                "Level2": list(set(level2)),
-                "Level3": list(set(level3)),
-            }
-        )
+            data.append(
+                {
+                    "acl_id": id,
+                    "Level1": list(set(level1)),
+                    "Level2": list(set(level2)),
+                    "Level3": list(set(level3)),
+                }
+            )
 
-df = pd.DataFrame(data)
-df = df.applymap(lambda x: np.nan if isinstance(x, list) and len(x) == 0 else x)
+    df = pd.DataFrame(data)
+    df = df.applymap(lambda x: np.nan if isinstance(x, list) and len(x) == 0 else x)
 
-df.to_csv("annotated_data.csv", index=False)
+    df.to_csv("annotated_data.csv", index=False)
 
-path_to_acl_data = ""
+    path_to_acl_data = ""
 
-raw_acl_corpus = pd.read_csv(
-    path_to_acl_data,
-    usecols=[
-        "acl_id",
-        "abstract",
-        "url",
-        "publisher",
-        "year",
-        "month",
-        "booktitle",
-        "author",
-        "title",
-        "doi",
-        "venue",
-    ],
-)
-final_data = pd.merge(df, raw_acl_corpus, on="acl_id", how="left")
-final_data.to_csv("FoRC4CL.csv", index=False)
+    raw_acl_corpus = pd.read_csv(
+        path_to_acl_data,
+        usecols=[
+            "acl_id",
+            "abstract",
+            "url",
+            "publisher",
+            "year",
+            "month",
+            "booktitle",
+            "author",
+            "title",
+            "doi",
+            "venue",
+        ],
+    )
+    final_data = pd.merge(df, raw_acl_corpus, on="acl_id", how="left")
+    final_data.to_csv("FoRC4CL.csv", index=False)
+
+if __name__ == "__main__":
+    main()
