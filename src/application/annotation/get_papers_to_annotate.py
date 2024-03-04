@@ -1,4 +1,4 @@
-"""Pipeline for collecting abstracts, titles from acl English papers, saving them into seperate txt files with the paper acl id as a filename"""
+"""Pipeline for collecting abstracts and titles from ACL papers, and saving them into txt files with the paper ACL ID as a filename"""
 import pandas as pd
 import spacy
 import spacy_fastlang
@@ -64,15 +64,12 @@ def get_venue(acl_id: str) -> str:
 def main():
     df = pd.read_parquet("acl_publications.parquet")
 
-    # filter out documents with empty abstracts, titles and acl ids
     df_filtered = df[
         (df["abstract"] != "") & (df["title"] != "") & (df["acl_id"] != "")
     ]
 
-    # filter out papers published before 2016
     df_filtered = df_filtered[df_filtered["year"].astype(int) >= 2016]
 
-    # filter out non English papers
     lang_abstracts = detect_en_lang(
         df_filtered["abstract"].tolist(), nlp, batch_size=50
     )
@@ -87,7 +84,6 @@ def main():
 
     english_papers = english_papers.reset_index(drop=True)
 
-    # get venues 
     english_papers["venue"] = english_papers.apply(
         lambda row: get_venue(row["acl_id"])
         if check_aclid_format(row["acl_id"]) == False
@@ -95,8 +91,6 @@ def main():
         axis=1,
     )
 
-    # we want to have 1500 docs in the dataset
-    # define the min docs per venue and extract docs per venue
     dataset_size = 1500
     min_numb_docs = round(dataset_size / len(english_papers["venue"].unique()))
     dataset = english_papers.groupby("venue").apply(
@@ -116,7 +110,6 @@ def main():
 
         assert not dataset.duplicated().any()
 
-    # remove any brackets from the text
     dataset["title"] = dataset["title"].apply(lambda x: re.sub(r"[\([{})\]]", "", x))
     dataset["abstract"] = dataset["abstract"].apply(
         lambda x: re.sub(r"[\([{})\]]", "", x)
@@ -124,7 +117,6 @@ def main():
 
     dataset.to_csv("papers_to_annotate/annotation_corpus.csv", index=False)
 
-    # add special token to the text and save it with the acl id as a filename
     for index, row in dataset.iterrows():
         with open(f'papers_to_annotate/{row["acl_id"]}.txt', "w") as f:
             f.write("TITLE " + f'{row["title"]}' + " TITLE" + "\n")

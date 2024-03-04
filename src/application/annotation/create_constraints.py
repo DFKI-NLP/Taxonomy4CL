@@ -1,9 +1,30 @@
-"""Pipeline for creating the constraints txt file for inception"""
+"""Pipeline for creating the constraints file for INCEpTION"""
 import json
-from generate_template import levels_template
 
 
-file = open("../visualisation/collapsibletree/taxonomy.json")
+def levels_template(
+    item: dict, i: int, subitem: dict, high_level_numb: str, low_level_numb: str
+) -> str:
+    """Creates a template string depending on the number of elements in a subitem
+
+    if 1 element:
+    '''
+    Level_N="NAME" -> Level_n="NAME";
+    '''
+
+    if >1 element:
+    '''
+    Level_N="NAME" -> Level_n="NAME" | Level_n="NAME" | ... | Level_n="NAME;
+    '''
+    """
+
+    if i == 0:
+        return f'Level{high_level_numb}="{item["name"]}" -> Level{low_level_numb}="{subitem["name"]}"'
+    else:
+        return f' | Level{low_level_numb}="{subitem["name"]}"'
+
+
+file = open("../data/taxonomy/taxonomy_v1.0.0.json")
 data = json.load(file)
 header = "import webanno.custom.NLP_Taxonomy as NLP_Taxonomy;\nNLP_Taxonomy {\n"
 

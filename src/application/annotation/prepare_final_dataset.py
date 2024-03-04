@@ -1,3 +1,4 @@
+"""Pipeline for preparing a csv with annotations and metadata"""
 import xml.etree.ElementTree as ET
 import os
 import re
@@ -6,7 +7,8 @@ import numpy as np
 
 
 # Note that first all curation files should be unzipped
-# Command for mac: find . -name "*.zip" | while read filename; do unzip -o -d "`dirname "$filename"`" "$filename"; done;
+# Command for mac:
+# find . -name "*.zip" | while read filename; do unzip -o -d "`dirname "$filename"`" "$filename"; done;
 
 
 def get_xmi_file_paths(main_path: str):
@@ -24,7 +26,6 @@ def get_xmi_file_paths(main_path: str):
     ]
 
 
-# get and save paths to all xmi files
 MAIN_PATH = ""
 
 xmi_files = get_xmi_file_paths(MAIN_PATH)
@@ -54,8 +55,6 @@ for file in xmi_files:
 
     curation.append({acl_id: list(lables)})
 
-# group labels per level in a doc
-# remove duplicates
 data = []
 
 for item in curation:
@@ -81,15 +80,11 @@ for item in curation:
             }
         )
 
-# create a dataframe with acl id and labels per level
-# replace empty lists with NaN values
 df = pd.DataFrame(data)
 df = df.applymap(lambda x: np.nan if isinstance(x, list) and len(x) == 0 else x)
 
 df.to_csv("annotated_data.csv", index=False)
 
-
-# prepare a sample of curated docs with metadat
 path_to_acl_data = ""
 
 raw_acl_corpus = pd.read_csv(
@@ -108,5 +103,5 @@ raw_acl_corpus = pd.read_csv(
         "venue",
     ],
 )
-sample_data = pd.merge(df, raw_acl_corpus, on="acl_id", how="left")
-sample_data[:200].to_csv("sample_data.csv", index=False)
+final_data = pd.merge(df, raw_acl_corpus, on="acl_id", how="left")
+final_data.to_csv("FoRC4CL.csv", index=False)
