@@ -1,0 +1,401 @@
+{
+ "name": "NLP",
+ "children": [
+  {
+   "name": "Image and Video Processing",
+   "children": [
+    {"name": "Image Captioning"},
+    {"name": "Video Captioning"},
+    {"name": "Optical Character Recognition (OCR)"},
+    {"name": "Sign Language and Fingerspelling Recognition"},
+    {"name": "Document Layout Analysis (DLA)"}
+   ]
+  },
+  {
+   "name": "Machine Translation (MT)",
+   "children": [
+    {"name": "Rule-based MT (RBMT)"},
+    {"name": "Statistical MT (SMT)"},
+    {"name": "Neural MT (NMT)"}
+   ]
+  },
+  {
+   "name": "Learning Paradigms",
+   "children": [
+    {"name": "Multimodal Learning"},
+    {"name": "Transfer Learning"},
+    {"name": "Few-shot Learning"},
+    {"name": "Reinforcement Learning"},
+    {"name": "Supervised Learning"},
+    {"name": "Unsupervised Learning"},
+    {"name": "Active Learning"},
+    {"name": "Adversarial Learning"}    
+   ]
+  },
+  {
+   "name": "Model Architectures",
+   "children": [
+    {"name": "Transformer Models"},
+    {
+     "name": "Recurrent Neural Networks (RNNs)",
+     "children": [
+     {"name": "Long Short-Term Memory (LSTM) Models"}
+     ]
+    },
+    {"name": "Large Language Models (LLMs)"},
+    {"name": "Graph Neural Networks (GNNs)"},
+    {"name": "Latent Dirichlet Allocation (LDA)"}
+   ]
+  },
+  {
+   "name": "Multi-agent Communication Systems",
+   "children": [
+    {"name": "Intelligent Agents"}
+   ]
+  },
+  {
+    "name": "Finite State Machines"
+  },
+   
+  {
+    "name": "Multilingual NLP"
+  },
+
+  {
+    "name": "Cross-lingual Application"
+  },
+   
+  {
+    "name": "Bilingual Lexicon Induction (BLI)"
+  },
+  
+  {
+    "name": "Low-resource Languages"
+  },
+   
+  {
+   "name": "Classification Applications",
+   "children": [
+    {"name": "Multilabel Text Classification"},
+    {"name": "Hate and Offensive Speech Detection"},
+    {"name": "Intent Detection"},
+    {"name": "Email Spam and Phishing Detection"},
+    {"name": "Plagiarism Detection"},
+    {"name": "Disfluency Detection"},
+    {
+     "name": "Misinformation Detection",
+     "children": [
+      {"name": "Fake News Detection"},
+      {"name": "Fake Review Detection"}
+     ]
+    },
+    {"name": "Rumor Detection"},
+    {"name": "Claim Verification"},
+    {"name": "Emotion Detection"},
+    {"name": "Sarcasm Detection"},
+    {"name": "Humor Detection"},
+    {"name": "Stance Detection"},
+    {"name": "Personality Trait Prediction"},
+    {"name": "Author Detection"},
+    {"name": "Irony Detection"},
+    {
+     "name": "Sentiment Analysis (SA)",
+     "children": [
+      {"name": "Aspect-Based SA (ABSA)"}
+      ]
+    },
+    {"name": "Hope Speech Detection"}
+   ]
+  },
+  {
+   "name": "Dialogue Systems",
+   "children": [
+    {"name": "Open Domain Dialogue Systems"},
+    {"name": "Chatbots"},
+    {"name": "Dialogue State Tracking (DST)"},
+    {"name": "Response Generation"}
+   ]
+  },
+  {
+   "name": "Question Answering (QA)",
+   "children": [
+    {"name": "Visual QA (VQA)"},
+    {"name": "Open-Domain QA"},
+    {"name": "Multiple Choice QA (MCQA)"},
+    {"name": "Community QA"},
+    {"name": "Mathematical QA"},
+    {"name": "Knowledge Base QA"},
+    {"name": "Long Form QA"}
+   ]
+  },
+  {
+   "name": "Domain-specific NLP",
+   "children": [
+    {
+     "name": "Medical and Clinical NLP",
+     "children": [
+      {"name": "NLP for Mental Health"},
+      {"name": "Biomedical NLP"}
+     ]
+    },
+    {
+      "name": "NLP for News and Media",
+      "children":[
+        {"name": "NLP for Social Media"}
+      ]
+    },
+    {"name": "NLP for Climate"},
+    {"name": "NLP for the Legal Domain"},
+    {"name": "NLP for Finance"},
+    {"name": "NLP for Arts",
+    "children": [
+        {"name": "NLP for Music"},
+        {"name": "NLP for Literature"}
+    ]},
+    {"name": "NLP for Politics"},
+    {"name": "NLP for Education"},
+    {
+     "name": "NLP for Bibliometrics and Scientometrics",
+     "children": [
+         {"name": "Citation Analysis"}
+        ]
+    }
+    ]
+    },
+    {
+        "name": "Adversarial Attacks and Robustness",
+        "children": [
+         {"name": "Backdoor Attacks"}
+         ]
+    },
+
+    {
+        "name": "Commonsense Reasoning"
+    },
+    {
+        "name": "Automated Essay Scoring"
+    },
+    {
+        "name": "Discourse Analysis"
+    },
+    {
+        "name": "Audio Generation and Processing",
+        "children":[
+          {"name": "Automatic Speech Recognition (ASR)"},
+          {"name": "Speech Synthesis"}
+        ]
+    },
+    {
+        "name": "Prompt Engineering"
+    },
+    {
+        "name": "Authorship Verification"
+    },
+    {
+        "name": "Acronyms and Abbreviations Detection and Expansion"
+    },
+    {
+        "name": "Text Clustering"
+    },
+    {
+        "name": "Topic Modeling"
+    },
+    {
+        "name": "Evaluation Techniques"
+    },
+     {
+        "name": "Ethics"
+    },
+
+    
+    {"name": "Biases in NLP",
+    "children": [
+          {"name": "Gender Bias"},
+          {"name": "Bias Detection"}
+         ]
+    },
+    {
+        "name": "Argument Mining"
+    },
+    {
+        "name": "Embeddings",
+        "children": [
+         {"name": "Word Embeddings"},
+         {"name": "Sentence Embeddings"}
+        ]
+    },
+    {
+        "name": "Parsing",
+        "children": [
+         {"name": "Discourse Parsing"},
+         {"name": "Semantic Parsing",
+         "children": [
+             {"name": "Semantic Role Labeling"}
+             ]
+         },
+         {"name": "Morphological Parsing"},
+         {"name": "Syntactic Parsing",
+         "children": [
+             {"name": "Constituency Parsing"},
+             {"name": "Dependency Parsing"}
+             ]
+         }
+        ]
+    },
+    {
+        "name": "Text Preprocessing",
+        "children": [
+         {"name": "Text Segmentation",
+         "children": [
+             {"name": "Word Segmentation"},
+             {"name": "Sentence Segmentation"}
+             ]
+         },
+         {"name": "Part-of-Speech (POS) Tagging"}
+        ]
+    },
+    {
+           "name": "Text Generation",
+           "children": [
+            {"name": " Text-to-SQL"},
+            {"name": "Story Generation",
+            "children": [
+                {"name": "Narrative Plot in Storytelling"}
+                ]
+            },
+            {"name": "Paraphrase and Rephrase Generation"},
+            {"name": "Lyrics Generation"},
+            {"name": "Poetry Generation"},
+            {"name": "Text Style Transfer"},
+            {"name": "Text Simplification"},
+            {"name": "Data-to-Text Generation",
+            "children": [
+                {"name": "Table-to-Text Generation"}
+                ]
+            }
+           ]
+       },
+    {
+        "name": "Data Management and Generation",
+        "children": [
+         {"name": "Data Analysis"},
+         {"name": "Data Preparation",
+         "children": [
+             {"name": "Annotation Processes"}
+             ]
+         },
+         {"name": "Data Augmentation"}
+        ]
+    },
+   
+    {
+        "name": "Information Retrieval",
+        "children": [
+         {"name": "Information Filtering",
+           "children":[
+             {"name": "Recommender Systems"}
+           ]
+         },
+         {"name": "Search Engines"}
+        ]
+    },
+   
+    {
+        "name": "Language Change Analysis",
+        "children": [
+         {"name": "Semantic Change Analysis"}
+        ]
+    },
+    {
+        "name": "Automatic Text Summarization",
+        "children": [
+         {"name": "Abstractive Text Summarization"},
+         {"name": "Extractive Text Summarization"},
+         {"name": "Document Summarization",
+         "children": [
+             {"name": "Multi-document Summarization"},
+             {"name": "Scientific Document Summarization"}
+             ]
+         }
+        ]
+    },
+    {
+        "name": "Information Extraction",
+        "children": [
+         {"name": "Named Entity Recognition (NER)",
+         "children": [
+             {"name": "NER for Nested Entities"}
+             ]
+         },
+         {"name": "Entity Linking"},
+         {"name": "Event Extraction"},
+         {"name": "Temporal Event Understanding"},
+         {"name": "Coreference Resolution"},
+         {"name": "Anaphora Resolution"},
+         {"name": "Word Sense Disambiguation (WSD)"},
+         {"name": "Relation Extraction",
+         "children": [
+             {"name": "Causality Relations Extraction"}
+             ]
+         },
+         {"name": "Hypernymy Extraction"}
+        ]
+    },
+    {
+        "name": "Error Detection and Correction",
+        "children": [
+         {"name": "Grammatical Error Correction (GEC)"}
+        ]
+    },
+    {
+        "name": "Knowledge Representation and Reasoning",
+        "children": [
+         {"name": "Semantic Web"},
+         {"name": "Knowledge Graphs"},
+         {"name": "Taxonomy Construction"},
+         {"name": "Ontologies",
+         "children": [
+             {"name": "Ontology Construction"},
+             {"name": "Ontology Matching"},
+             {"name": "Ontology Extension "}
+             ]
+         },
+         {"name": "Multihop Reasoning"},
+         {"name": "Link Prediction"},
+         {"name": "Abstract Meaning Representation (AMR)"}
+        ]
+    },
+    {
+        "name": "Figurative Language",
+        "children": [
+         {"name": "Idiomatic Expressions"},
+         {"name": "Metaphors"}
+        ]
+    },
+
+    {
+        "name": "Software Development"
+    },
+
+    {
+        "name": "Infrastructure or Platform Development"
+    },
+
+    {
+        "name": "Explainability and Interpretability"
+    },
+
+    {
+        "name": "Natural Language Inference (NLI)"
+    },
+
+    {
+        "name": "Human-machine Interaction"
+    },
+
+    {
+        "name": "Robotics"
+    }
+
+]
+}
