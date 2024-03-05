@@ -31,3 +31,12 @@ If you have any questions regarding labels or suggestions for new ones, please d
 ## Cite us
 
 If you use our resources (Taxonomy4CL and FoRC4CL), please cite the following publication:
+
+```commandline
+@InProceedings{forc4cl,
+  author    = {Abu Ahmad, Raia and Borisova, Ekaterina and Rehm, Georg},
+  title     = {FoRC4CL: A Fine-grained Field of Research Classification and Annotated Dataset of NLP Articles},
+  booktitle      = {Proceedings of the Joint International Conference on Computational Linguistics, Language Resources and Evaluation},
+  year           = {2024},
+  comment = {Accepted at LREC-COLING 2024. Link will be provided when available.}
+}
