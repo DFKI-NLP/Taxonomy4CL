@@ -26,6 +26,7 @@ Certain labels in the taxonomy are not straightforward in terms of their definit
 ## Feedback
 
 This resource grows based on your feedback! 
+
 If you have any questions regarding labels or suggestions for new ones, please do not hesitate to open an issue in this repository. 
 
 ## Cite us
