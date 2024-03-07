@@ -18,7 +18,7 @@ You will find different versions of the taxonomy at:
 /data/Taxonomy4CL
 ```
 
-The latest version of Taxonomy4CL can be viewed in a more intuitive way using an [interactive tree structure](https://huggingface.co/spaces/katebor/Taxonomy).
+The latest version of Taxonomy4CL can be viewed in a more intuitive way using an [interactive tree structure](https://huggingface.co/spaces/DFKI-SLT/Taxonomy4CL).
 
 
 Certain labels in the taxonomy are not straightforward in terms of their definition and what type of contribution they describe. We provide definitions for such labels in [this document](https://docs.google.com/document/d/1kc19ecKBYxF9mtWTTeR8dHdkM12SI4REpfF4DlfBpoc/edit?usp=sharing). 
