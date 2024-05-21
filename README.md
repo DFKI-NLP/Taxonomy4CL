@@ -34,10 +34,24 @@ If you have any questions regarding labels or suggestions for new ones, please d
 If you use our resources (Taxonomy4CL and FoRC4CL), please cite the following publication:
 
 ```commandline
-@InProceedings{forc4cl,
-  author    = {Abu Ahmad, Raia and Borisova, Ekaterina and Rehm, Georg},
-  title     = {FoRC4CL: A Fine-grained Field of Research Classification and Annotated Dataset of NLP Articles},
-  booktitle      = {Proceedings of the Joint International Conference on Computational Linguistics, Language Resources and Evaluation},
-  year           = {2024},
-  comment = {Accepted at LREC-COLING 2024. Link will be provided when available.}
+@inproceedings{ahmad-etal-2024-forc4cl-fine,
+    title = "{F}o{RC}4{CL}: A Fine-grained Field of Research Classification and Annotated Dataset of {NLP} Articles",
+    author = "Ahmad, Raia Abu  and
+      Borisova, Ekaterina  and
+      Rehm, Georg",
+    editor = "Calzolari, Nicoletta  and
+      Kan, Min-Yen  and
+      Hoste, Veronique  and
+      Lenci, Alessandro  and
+      Sakti, Sakriani  and
+      Xue, Nianwen",
+    booktitle = "Proceedings of the 2024 Joint International Conference on Computational Linguistics, Language Resources and Evaluation (LREC-COLING 2024)",
+    month = may,
+    year = "2024",
+    address = "Torino, Italy",
+    publisher = "ELRA and ICCL",
+    url = "https://aclanthology.org/2024.lrec-main.651",
+    pages = "7389--7394",
+    abstract = "The steep increase in the number of scholarly publications has given rise to various digital repositories, libraries and knowledge graphs aimed to capture, manage, and preserve scientific data. Efficiently navigating such databases requires a system able to classify scholarly documents according to the respective research (sub-)field. However, not every digital repository possesses a relevant classification schema for categorising publications. For instance, one of the largest digital archives in Computational Linguistics (CL) and Natural Language Processing (NLP), the ACL Anthology, lacks a system for classifying papers into topics and sub-topics. This paper addresses this gap by constructing a corpus of 1,500 ACL Anthology publications annotated with their main contributions using a novel hierarchical taxonomy of core CL/NLP topics and sub-topics. The corpus is used in a shared task with the goal of classifying CL/NLP papers into their respective sub-topics.",
 }
+```
